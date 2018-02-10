@@ -4,4 +4,8 @@ class Vending_Machine
     @display = display
   end
 
+  def insert(coin)
+
+  end
+
 end

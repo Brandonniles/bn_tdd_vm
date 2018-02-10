@@ -6,4 +6,8 @@ describe Vending_Machine do
   it "has a display attribute" do
     expect(vm.respond_to?(:display)).to be(true)
   end
+
+  it "has an insert method" do
+    expect(vm.respond_to?(:insert)).to be(true)
+  end
 end
