@@ -7,9 +7,15 @@ class Vending_Machine
   end
 
   def insert(coin)
-    @display = display.to_f + 0.25 if coin.weight == 5.67 && coin.diameter == 24.26
-    @display = display.to_f + 0.10 if coin.weight == 2.67 && coin.diameter == 17.9
-    @display = display.to_f + 0.05 if coin.weight == 5.0 && coin.diameter == 21.21
+    if coin.weight == 5.67 && coin.diameter == 24.26
+      @display = display.to_f + 0.25
+    elsif coin.weight == 2.27 && coin.diameter == 17.90
+      @display = display.to_f + 0.10
+    elsif coin.weight == 5.0 && coin.diameter == 21.21
+      @display = display.to_f + 0.05
+    else
+      @rejected_coins << coin
+    end
   end
 
 end

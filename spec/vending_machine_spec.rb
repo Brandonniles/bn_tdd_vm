@@ -4,8 +4,9 @@ require_relative '../lib/coin'
 describe Vending_Machine do
   let(:vm) { Vending_Machine.new(display: 0) }
   let(:quarter) { Coin.new(weight: 5.67, diameter: 24.26)}
-  let(:dime) { Coin.new(weight: 2.67, diameter: 17.90)}
+  let(:dime) { Coin.new(weight: 2.27, diameter: 17.90)}
   let(:nickel) { Coin.new(weight: 5.0, diameter: 21.21)}
+  let(:penny) { Coin.new(weight: 2.5, diameter: 19.05)}
 
   it "has a display attribute" do
     expect(vm.respond_to?(:display)).to be(true)
@@ -57,5 +58,13 @@ describe Vending_Machine do
   it "should have an array for rejected_coins" do
     expect(vm.respond_to?(:rejected_coins)).to be(true)
   end
+
+  context 'unaccepted coins should be put into rejected_coins' do
+    it "should put a penny into rejected_coins" do
+      vm.insert(penny)
+      expect(vm.rejected_coins).to eq([penny])
+    end
+  end
+
 
 end
