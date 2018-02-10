@@ -4,7 +4,7 @@ class Vending_Machine
   def initialize(display:)
     @display = 'INSERT COIN'
     @rejected_coins = []
-    @products = {"Cola" => 1.00, "Chips" => 0.50, "Candy" => 0.65}
+    @products = {"cola" => 1.00, "chips" => 0.50, "candy" => 0.65}
   end
 
   def insert(coin)
@@ -17,6 +17,10 @@ class Vending_Machine
     else
       @rejected_coins << coin
     end
+  end
+
+  def select_product(choice)
+    
   end
 
 end

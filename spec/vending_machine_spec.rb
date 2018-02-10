@@ -70,5 +70,9 @@ describe Vending_Machine do
     expect(vm.respond_to?(:products)).to be(true)
   end
 
+  it "should have a select_product method" do
+    expect(vm.respond_to?(:select_product)).to be(true)
+  end
+
 
 end
