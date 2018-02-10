@@ -66,5 +66,9 @@ describe Vending_Machine do
     end
   end
 
+  it "should have a products hash" do
+    expect(vm.respond_to?(:products)).to be(true)
+  end
+
 
 end
