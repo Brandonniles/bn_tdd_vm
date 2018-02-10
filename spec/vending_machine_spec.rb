@@ -1,7 +1,9 @@
 require_relative '../lib/vending_machine'
+require_relative '../lib/coin'
 
 describe Vending_Machine do
   let(:vm) { Vending_Machine.new(display: 0) }
+  let(:quarter) { Coin.new(weight: 5.67, diameter: 24.26)}
 
   it "has a display attribute" do
     expect(vm.respond_to?(:display)).to be(true)
@@ -13,5 +15,11 @@ describe Vending_Machine do
 
   it "has an insert method" do
     expect(vm.respond_to?(:insert)).to be(true)
+  end
+
+  it 'display should change to .25 after insertion of a quarter' do
+    expect(vm.display).to eq('INSERT COIN')
+    vm.insert(quarter)
+    expect(vm.display).to eq(0.25)
   end
 end

@@ -1,8 +1,7 @@
 class Coin
-  attr_accessor :name, :weight, :diameter
+  attr_accessor :weight, :diameter
 
-  def initialize(name:, weight:, diameter:)
-    @name = name
+  def initialize(weight:, diameter:)
     @weight = weight
     @diameter = diameter
   end
