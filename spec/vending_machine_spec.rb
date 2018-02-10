@@ -17,9 +17,17 @@ describe Vending_Machine do
     expect(vm.respond_to?(:insert)).to be(true)
   end
 
-  it 'display should change to .25 after insertion of a quarter' do
+  it 'display should update to 0.25 after insertion of a quarter' do
     expect(vm.display).to eq('INSERT COIN')
     vm.insert(quarter)
     expect(vm.display).to eq(0.25)
+  end
+
+  it "display should update to .50 after insertion of a quarter twice" do
+    expect(vm.display).to eq('INSERT COIN')
+    vm.insert(quarter)
+    expect(vm.display).to eq(0.25)
+    vm.insert(quarter)
+    expect(vm.display).to eq(0.50)
   end
 end
