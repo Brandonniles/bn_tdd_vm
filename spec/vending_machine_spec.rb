@@ -54,4 +54,8 @@ describe Vending_Machine do
     expect(vm.display).to eq(0.10)
   end
 
+  it "should have an array for rejected_coins" do
+    expect(vm.respond_to?(:rejected_coins)).to be(true)
+  end
+
 end
