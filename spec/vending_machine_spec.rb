@@ -4,6 +4,7 @@ require_relative '../lib/coin'
 describe Vending_Machine do
   let(:vm) { Vending_Machine.new(display: 0) }
   let(:quarter) { Coin.new(weight: 5.67, diameter: 24.26)}
+  let(:dime) { Coin.new(weight: 2.67, diameter: 17.9)}
 
   it "has a display attribute" do
     expect(vm.respond_to?(:display)).to be(true)
@@ -30,4 +31,13 @@ describe Vending_Machine do
     vm.insert(quarter)
     expect(vm.display).to eq(0.50)
   end
+
+  it "display should update to .35 after insertion of a quarter and a dime" do
+    expect(vm.display).to eq('INSERT COIN')
+    vm.insert(quarter)
+    expect(vm.display).to eq(0.25)
+    vm.insert(dime)
+    expect(vm.display).to eq(0.35)
+  end
+
 end
