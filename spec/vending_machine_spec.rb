@@ -74,5 +74,14 @@ describe Vending_Machine do
     expect(vm.respond_to?(:select_product)).to be(true)
   end
 
+  it "should have a dispensed 'area' " do
+    expect(vm.respond_to?(:dispensed)).to be(true)
+  end
+
+  it "select_product should take a choice and dispense that choice" do
+    vm.select_product('chips')
+    expect(vm.dispensed).to eq('chips')
+  end
+
 
 end
