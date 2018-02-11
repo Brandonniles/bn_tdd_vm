@@ -79,9 +79,39 @@ describe Vending_Machine do
   end
 
   it "select_product should take a choice and dispense that choice" do
+    vm.insert(quarter)
+    vm.insert(quarter)
     vm.select_product('chips')
     expect(vm.dispensed).to eq('chips')
   end
+
+  context 'it only dispenses items if the proper amount has been inserted' do
+    it "does not dispense chips if 0.40 has been inserted" do
+      vm.insert(quarter)
+      vm.insert(dime)
+      vm.insert(nickel)
+      expect(vm.display) == 0.40
+      vm.select_product('chips')
+      expect(vm.dispensed).to eq('')
+    end
+
+    it "dispenses cola after insertion of 3 quarters and 3 dimes" do
+      vm.insert(quarter)
+      vm.insert(quarter)
+      vm.insert(quarter)
+      vm.insert(dime)
+      vm.insert(dime)
+      vm.insert(dime)
+      expect(vm.display).to eq(1.05)
+      vm.select_product('cola')
+      expect(vm.dispensed).to eq('cola')
+    end
+  end
+
+
+
+
+
 
 
 end

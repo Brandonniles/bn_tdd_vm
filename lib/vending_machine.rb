@@ -21,7 +21,7 @@ class Vending_Machine
   end
 
   def select_product(choice)
-    @dispensed = choice
+    @dispensed = choice if @display.to_f >= @products[choice].to_f
   end
 
 end
