@@ -1,7 +1,8 @@
 class Vending_Machine
-  attr_accessor :display, :rejected_coins, :products, :dispensed
+  attr_accessor :display, :coin_tray, :rejected_coins, :products, :dispensed
 
   def initialize(display:)
+    @coin_tray = []
     @display = 'INSERT COIN'
     @rejected_coins = []
     @products = {"cola" => 1.00, "chips" => 0.50, "candy" => 0.65}
