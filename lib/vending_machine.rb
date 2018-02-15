@@ -1,4 +1,6 @@
 class Vending_Machine
+  # ACCEPTED_COIN_WEIGHTS = [5.67, 2.27, 5.0]
+  # ACCEPTED_COIN_DIAMETERS = [24.26, 17.90, 21.21]
   attr_accessor :display, :coin_tray, :rejected_coins, :products, :dispensed
 
   def initialize(display:)
@@ -10,6 +12,7 @@ class Vending_Machine
   end
 
   def insert(coin)
+    # @coin_tray << coin if ACCEPTED_COIN_WEIGHTS.include?(coin.weight) && ACCEPTED_COIN_DIAMETERS.include?(coin.diameter)    
     if coin.weight == 5.67 && coin.diameter == 24.26
       @display = display.to_f + 0.25
     elsif coin.weight == 2.27 && coin.diameter == 17.90

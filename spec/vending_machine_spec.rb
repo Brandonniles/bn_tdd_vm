@@ -108,6 +108,13 @@ describe Vending_Machine do
     end
   end
 
+  # context 'coin_tray to contain valid coins after insertion' do
+  #   it "inserts a quarter into the coin tray" do
+  #     vm.insert(quarter)
+  #     expect(vm.coin_tray).to eq([quarter])
+  #   end
+  # end
+
 
 
 
