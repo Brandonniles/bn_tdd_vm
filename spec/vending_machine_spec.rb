@@ -116,22 +116,24 @@ describe Vending_Machine do
     expect(vm.display).to eq('INSERT COIN')
   end
 
-  # context "displays 'PRICE NUM' when not enough money inserted" do
-  #   it "displays 'PRICE 1.00' for 3 dimes inserted and cola selection" do
-  #     vm.insert(dime)
-  #     vm.insert(dime)
-  #     vm.insert(dime)
-  #     vm.select_product('cola')
-  #     expect(vm.display).to eq('PRICE 1.00')
-  #   end
-  # end
+  context "displays 'PRICE NUM' when not enough money inserted" do
+    it "displays 'PRICE 1.00' for 3 dimes inserted and cola selection" do
+      vm.insert(dime)
+      vm.insert(dime)
+      vm.insert(dime)
+      vm.select_product('cola')
+      expect(vm.display).to eq('PRICE 1.00')
+    end
+
+    it "displays 'PRICE 0.65' for 2 quarters inserted and candy selection" do
+      vm.insert(quarter)
+      vm.insert(quarter)
+      vm.select_product('candy')
+      expect(vm.display).to eq('PRICE 0.65')
+    end
 
 
-
-
-
-
-
+  end
 
 
 

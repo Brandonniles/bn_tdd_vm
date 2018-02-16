@@ -26,7 +26,7 @@ class Vending_Machine
       @dispensed = choice; @display = 'THANK YOU'
       sleep(0); @display = 'INSERT COIN'
     else
-      # @display = "PRICE #{@products[choice]}"
+      @display = "PRICE #{"%.2f" % (@products[choice])}"
     end
   end
 
