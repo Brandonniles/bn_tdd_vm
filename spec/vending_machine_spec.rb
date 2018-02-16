@@ -55,14 +55,14 @@ describe Vending_Machine do
     expect(vm.display).to eq("0.10")
   end
 
-  it "should have an array for rejected_coins" do
-    expect(vm.respond_to?(:rejected_coins)).to be(true)
+  it "should have an array for coin_return" do
+    expect(vm.respond_to?(:coin_return)).to be(true)
   end
 
-  context 'unaccepted coins should be put into rejected_coins' do
-    it "should put a penny into rejected_coins" do
+  context 'unaccepted coins should be put into coin_return' do
+    it "should put a penny into coin_return" do
       vm.insert(penny)
-      expect(vm.rejected_coins).to eq([penny])
+      expect(vm.coin_return).to eq([penny])
     end
   end
 
@@ -131,10 +131,34 @@ describe Vending_Machine do
       vm.select_product('candy')
       expect(vm.display).to eq('PRICE 0.65')
     end
-
-
   end
 
+  it "inserted_coins had 2 quarters after insertion of 2 quarters" do
+    vm.insert(quarter)
+    vm.insert(quarter)
+    expect(vm.inserted_coins).to eq([quarter, quarter])
+  end
+
+  it "inserts 1 nickel and 2 dimes then returns said coins when return_coins is called" do
+    vm.insert(nickel)
+    vm.insert(dime)
+    vm.insert(dime)
+    vm.return_coins
+    expect(vm.coin_return).to eq([dime, dime, nickel])
+  end
+
+  it "empties @inserted_coins of 2 dimes when return_coins is called" do
+    vm.insert(dime)
+    vm.insert(dime)
+    vm.return_coins
+    expect(vm.inserted_coins).to eq([])
+  end
+
+  it "displays 'INSERT COIN' after return_coins is called" do
+    vm.insert(dime)
+    vm.return_coins
+    expect(vm.display).to eq('INSERT COIN')
+  end
 
 
 end
