@@ -23,36 +23,36 @@ describe Vending_Machine do
   it 'display should update to 0.25 after insertion of a quarter' do
     expect(vm.display).to eq('INSERT COIN')
     vm.insert(quarter)
-    expect(vm.display).to eq(0.25)
+    expect(vm.display).to eq("0.25")
   end
 
   it "display should update to .50 after insertion of a quarter twice" do
     expect(vm.display).to eq('INSERT COIN')
     vm.insert(quarter)
-    expect(vm.display).to eq(0.25)
+    expect(vm.display).to eq("0.25")
     vm.insert(quarter)
-    expect(vm.display).to eq(0.50)
+    expect(vm.display).to eq("0.50")
   end
 
   it "display should update to .35 after insertion of a quarter and a dime" do
     expect(vm.display).to eq('INSERT COIN')
     vm.insert(quarter)
-    expect(vm.display).to eq(0.25)
+    expect(vm.display).to eq("0.25")
     vm.insert(dime)
-    expect(vm.display).to eq(0.35)
+    expect(vm.display).to eq("0.35")
   end
 
   it "display should update to 0.05 after insertion of a nickel" do
     vm.insert(nickel)
-    expect(vm.display).to eq(0.05)
+    expect(vm.display).to eq("0.05")
   end
 
   it "display should update to .10 after insertion of 2 nickels" do
     expect(vm.display).to eq('INSERT COIN')
     vm.insert(nickel)
-    expect(vm.display).to eq(0.05)
+    expect(vm.display).to eq("0.05")
     vm.insert(nickel)
-    expect(vm.display).to eq(0.10)
+    expect(vm.display).to eq("0.10")
   end
 
   it "should have an array for rejected_coins" do
@@ -90,7 +90,7 @@ describe Vending_Machine do
       vm.insert(quarter)
       vm.insert(dime)
       vm.insert(nickel)
-      expect(vm.display) == 0.40
+      expect(vm.display).to eq("0.40")
       vm.select_product('chips')
       expect(vm.dispensed).to eq('')
     end
@@ -102,18 +102,32 @@ describe Vending_Machine do
       vm.insert(dime)
       vm.insert(dime)
       vm.insert(dime)
-      expect(vm.display).to eq(1.05)
+      expect(vm.display).to eq("1.05")
       vm.select_product('cola')
       expect(vm.dispensed).to eq('cola')
     end
   end
 
-  # context 'coin_tray to contain valid coins after insertion' do
-  #   it "inserts a quarter into the coin tray" do
-  #     vm.insert(quarter)
-  #     expect(vm.coin_tray).to eq([quarter])
+  it "says 'INSERT COIN' after displaying 'THANK YOU'" do
+    vm.insert(quarter)
+    vm.insert(quarter)
+    vm.select_product('chips')
+    expect(vm.dispensed).to eq('chips')
+    expect(vm.display).to eq('INSERT COIN')
+  end
+
+  # context "displays 'PRICE NUM' when not enough money inserted" do
+  #   it "displays 'PRICE 1.00' for 3 dimes inserted and cola selection" do
+  #     vm.insert(dime)
+  #     vm.insert(dime)
+  #     vm.insert(dime)
+  #     vm.select_product('cola')
+  #     expect(vm.display).to eq('PRICE 1.00')
   #   end
   # end
+
+
+
 
 
 
