@@ -1,5 +1,5 @@
 class Vending_Machine
-  attr_accessor :display, :inserted_coins, :coin_return, :products, :dispensed
+  attr_accessor :display, :inserted_coins, :coin_return, :products, :dispensed, :quarter
 
   def initialize(display:)
     @inserted_coins = []
@@ -7,6 +7,11 @@ class Vending_Machine
     @coin_return = []
     @products = {"cola" => 1.00, "chips" => 0.50, "candy" => 0.65}
     @dispensed = ''
+    @quarter = Coin.new(weight: 5.67, diameter: 24.26)
+  end
+
+  def make_change(num)
+    @coin_return << NICKEL
   end
 
   def insert(coin)

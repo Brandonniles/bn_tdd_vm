@@ -1,11 +1,12 @@
 require_relative '../lib/vending_machine'
 require_relative '../lib/coin'
+require_relative '../lib/change_coins_module'
 
 describe Vending_Machine do
   let(:vm) { Vending_Machine.new(display: 0) }
-  let(:quarter) { Coin.new(weight: 5.67, diameter: 24.26)}
-  let(:dime) { Coin.new(weight: 2.27, diameter: 17.90)}
-  let(:nickel) { Coin.new(weight: 5.0, diameter: 21.21)}
+  # let(:quarter) { Coin.new(weight: 5.67, diameter: 24.26)}
+  # let(:dime) { Coin.new(weight: 2.27, diameter: 17.90)}
+  # let(:nickel) { Coin.new(weight: 5.0, diameter: 21.21)}
   let(:penny) { Coin.new(weight: 2.5, diameter: 19.05)}
 
   it "has a display attribute" do
@@ -22,15 +23,15 @@ describe Vending_Machine do
 
   it 'display should update to 0.25 after insertion of a quarter' do
     expect(vm.display).to eq('INSERT COIN')
-    vm.insert(quarter)
+    vm.insert(vm.quarter)
     expect(vm.display).to eq("0.25")
   end
 
   it "display should update to .50 after insertion of a quarter twice" do
     expect(vm.display).to eq('INSERT COIN')
-    vm.insert(quarter)
+    vm.insert(vm.quarter)
     expect(vm.display).to eq("0.25")
-    vm.insert(quarter)
+    vm.insert(vm.quarter)
     expect(vm.display).to eq("0.50")
   end
 
@@ -158,6 +159,11 @@ describe Vending_Machine do
     vm.insert(dime)
     vm.return_coins
     expect(vm.display).to eq('INSERT COIN')
+  end
+
+  it "return a nickel when change amount is 0.05" do
+    vm.make_change(0.05)
+    expect(vm.coin_return).to eq([nickel])
   end
 
 
