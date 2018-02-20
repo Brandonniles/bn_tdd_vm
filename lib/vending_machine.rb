@@ -17,10 +17,7 @@ class Vending_Machine
 
   def make_change(num)
     @change_coins.each do |k, v|
-      (num.to_f / v.to_f).to_i.times do
-        @coin_return << k
-        num = "%.2f" % (num.to_f - v.to_f)
-      end
+      (num.to_f / v.to_f).to_i.times { @coin_return << k; num = "%.2f" % (num.to_f - v.to_f) }
     end
   end
 
