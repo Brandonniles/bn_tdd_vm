@@ -1,7 +1,7 @@
 require_relative './coin'
 class Vending_Machine
 
-  attr_accessor :display, :inserted_coins, :coin_return, :products, :dispensed, :quarter, :nickel, :dime
+  attr_accessor :display, :inserted_coins, :coin_return, :products, :dispensed, :quarter, :nickel, :dime, :change_coins
 
   def initialize(display:)
     @inserted_coins = []
@@ -12,11 +12,16 @@ class Vending_Machine
     @quarter = Coin.new(weight: 5.67, diameter: 24.26)
     @dime = Coin.new(weight: 2.27, diameter: 17.90)
     @nickel = Coin.new(weight: 5.0, diameter: 21.21)
+    @change_coins = {@quarter => "0.25", @dime => "0.10", @nickel => "0.05"}
   end
 
   def make_change(num)
-    @coin_return << @nickel if num.to_f == 0.05
-    @coin_return << @quarter if num.to_f == 0.25
+    @change_coins.each do |k, v|
+      (num.to_f / v.to_f).to_i.times do
+        @coin_return << k
+        num = "%.2f" % (num.to_f - v.to_f)
+      end
+    end
   end
 
   def insert(coin)

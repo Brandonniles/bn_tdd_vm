@@ -163,12 +163,30 @@ describe Vending_Machine do
     expect(vm.coin_return).to eq([vm.nickel])
   end
 
-  it "returns a quarter when change amount in 0.25" do
+  it "returns a quarter when change amount is 0.25" do
     vm.make_change(0.25)
     expect(vm.coin_return).to eq([vm.quarter])
   end
 
+  it "returns a quarter and nickel when change amount 0.30" do
+    vm.make_change(0.30)
+    expect(vm.coin_return).to eq([vm.quarter, vm.nickel])
+  end
 
+  it "returns two quarters when change amount 0.50" do
+    vm.make_change(0.50)
+    expect(vm.coin_return).to eq([vm.quarter, vm.quarter])
+  end
+
+  it "returns two quarters and two dimes when change amount 0.70" do
+    vm.make_change(0.70)
+    expect(vm.coin_return).to eq([vm.quarter, vm.quarter, vm.dime, vm.dime])
+  end
+
+  it "returns 3 quarters and a nickel when change amount 0.80" do
+    vm.make_change(0.80)
+    expect(vm.coin_return).to eq([vm.quarter, vm.quarter, vm.quarter, vm.nickel])
+  end
 
 
 
