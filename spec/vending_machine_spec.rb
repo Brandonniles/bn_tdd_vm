@@ -188,8 +188,15 @@ describe Vending_Machine do
     expect(vm.coin_return).to eq([vm.quarter, vm.quarter, vm.quarter, vm.nickel])
   end
 
-
-
+  it "dispenses 'candy' and also returns a quarter and a dime after inserting a dollar and selecting candy" do
+    vm.insert(vm.quarter)
+    vm.insert(vm.quarter)
+    vm.insert(vm.quarter)
+    vm.insert(vm.quarter)
+    vm.select_product('candy')
+    expect(vm.dispensed).to eq('candy')
+    expect(vm.coin_return).to eq([vm.quarter, vm.dime])
+  end
 
 
 end

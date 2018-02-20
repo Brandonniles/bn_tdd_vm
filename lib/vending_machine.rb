@@ -35,6 +35,7 @@ class Vending_Machine
 
   def select_product(choice)
     if @display.to_f >= @products[choice].to_f
+      make_change(@display.to_f - @products[choice].to_f)  
       @dispensed = choice; @display = 'THANK YOU'
       sleep(0); @display = 'INSERT COIN'
     else
