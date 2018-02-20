@@ -15,7 +15,8 @@ class Vending_Machine
   end
 
   def make_change(num)
-    @coin_return << @nickel
+    @coin_return << @nickel if num.to_f == 0.05
+    @coin_return << @quarter if num.to_f == 0.25
   end
 
   def insert(coin)

@@ -163,5 +163,15 @@ describe Vending_Machine do
     expect(vm.coin_return).to eq([vm.nickel])
   end
 
+  it "returns a quarter when change amount in 0.25" do
+    vm.make_change(0.25)
+    expect(vm.coin_return).to eq([vm.quarter])
+  end
+
+
+
+
+
+
 
 end
