@@ -3,7 +3,6 @@ require_relative '../lib/coin'
 
 describe Vending_Machine do
   let(:vm) { Vending_Machine.new(display: 0) }
-
   let(:penny) { Coin.new(weight: 2.5, diameter: 19.05)}
 
   it "has a display attribute" do
@@ -204,6 +203,14 @@ describe Vending_Machine do
     expect(vm.product_stock['chips']).to eq(5)
     vm.select_product('chips')
     expect(vm.product_stock['chips']).to eq(4)
+  end
+
+  it "displays 'SOLD OUT' if trying to select an item that is out" do
+    vm.insert(vm.quarter)
+    vm.insert(vm.quarter)
+    vm.insert(vm.quarter)
+    vm.check_inventory('candy')
+    expect(vm.display).to eq('SOLD OUT')
   end
 
 

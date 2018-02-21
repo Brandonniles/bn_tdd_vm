@@ -8,7 +8,7 @@ class Vending_Machine
     @display = 'INSERT COIN'
     @coin_return = []
     @products = {"cola" => 1.00, "chips" => 0.50, "candy" => 0.65}
-    @product_stock = {"cola" => 5, "chips" => 5, "candy" => 5}
+    @product_stock = {"cola" => 5, "chips" => 5, "candy" => 0}
     @dispensed = ''
     @quarter = Coin.new(weight: 5.67, diameter: 24.26)
     @dime = Coin.new(weight: 2.27, diameter: 17.90)
@@ -33,6 +33,10 @@ class Vending_Machine
     else
       @coin_return << coin
     end
+  end
+
+  def check_inventory(choice)
+    @product_stock[choice] > 0 ? select_product(choice) : @display = 'SOLD OUT'
   end
 
   def select_product(choice)
