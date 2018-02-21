@@ -198,5 +198,13 @@ describe Vending_Machine do
     expect(vm.coin_return).to eq([vm.quarter, vm.dime])
   end
 
+  it "decreases chips stock by 1 when buying chips" do
+    vm.insert(vm.quarter)
+    vm.insert(vm.quarter)
+    expect(vm.product_stock['chips']).to eq(5)
+    vm.select_product('chips')
+    expect(vm.product_stock['chips']).to eq(4)
+  end
+
 
 end

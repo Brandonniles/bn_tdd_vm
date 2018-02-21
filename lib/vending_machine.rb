@@ -1,18 +1,20 @@
 require_relative './coin'
 class Vending_Machine
 
-  attr_accessor :display, :inserted_coins, :coin_return, :products, :dispensed, :quarter, :nickel, :dime, :change_coins
+  attr_accessor :display, :inserted_coins, :coin_return, :products, :dispensed, :quarter, :nickel, :dime, :change_coins, :product_stock
 
   def initialize(display:)
     @inserted_coins = []
     @display = 'INSERT COIN'
     @coin_return = []
     @products = {"cola" => 1.00, "chips" => 0.50, "candy" => 0.65}
+    @product_stock = {"cola" => 5, "chips" => 5, "candy" => 5}
     @dispensed = ''
     @quarter = Coin.new(weight: 5.67, diameter: 24.26)
     @dime = Coin.new(weight: 2.27, diameter: 17.90)
     @nickel = Coin.new(weight: 5.0, diameter: 21.21)
     @change_coins = {@quarter => "0.25", @dime => "0.10", @nickel => "0.05"}
+
   end
 
   def make_change(num)
@@ -35,7 +37,8 @@ class Vending_Machine
 
   def select_product(choice)
     if @display.to_f >= @products[choice].to_f
-      make_change(@display.to_f - @products[choice].to_f)  
+      make_change(@display.to_f - @products[choice].to_f)
+      @product_stock[choice] -= 1
       @dispensed = choice; @display = 'THANK YOU'
       sleep(0); @display = 'INSERT COIN'
     else
