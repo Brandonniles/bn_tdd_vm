@@ -10,6 +10,7 @@ Built with Ruby 2.3.3 & RSpec 3.7.0
   2. Most importantly, a link to a video was attached with this kata via email. The video contains a screenshare of me breaking down my code bit by bit and explaining my thought process. Is is crucial to the goal of this kata that the video is watched before observing this code. If there were no video to accompany this code, this README would be quite a bit more thorough in explaining the reasoning behind why certain things were done.
 
   Link to the video explain my thought process:
+  
   https://drive.google.com/open?id=1meET_Q80_wEITYoyI_S-94jbJH25EZmA
 
 
