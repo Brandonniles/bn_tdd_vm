@@ -35,8 +35,14 @@ class Vending_Machine
     end
   end
 
+  def sold_out
+    display_status = @display
+    @display = 'SOLD OUT'; sleep(0)
+    @display = display_status
+  end
+
   def check_inventory(choice)
-    @product_stock[choice] > 0 ? select_product(choice) : @display = 'SOLD OUT'
+    @product_stock[choice] > 0 ? select_product(choice) : sold_out
   end
 
   def select_product(choice)

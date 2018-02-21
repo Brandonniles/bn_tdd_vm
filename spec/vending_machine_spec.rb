@@ -205,12 +205,12 @@ describe Vending_Machine do
     expect(vm.product_stock['chips']).to eq(4)
   end
 
-  it "displays 'SOLD OUT' if trying to select an item that is out" do
+  it "displays 'SOLD OUT' then original display status if trying to select an item that is out" do
     vm.insert(vm.quarter)
     vm.insert(vm.quarter)
     vm.insert(vm.quarter)
     vm.check_inventory('candy')
-    expect(vm.display).to eq('SOLD OUT')
+    expect(vm.display).to eq('0.75')
   end
 
 
