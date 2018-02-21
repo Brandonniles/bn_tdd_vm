@@ -213,5 +213,10 @@ describe Vending_Machine do
     expect(vm.display).to eq('0.75')
   end
 
+  it "displays 'EXACT CHANGE ONLY' if exact_change_mode is true" do
+    vm.switch_mode
+    expect(vm.display).to eq('EXACT CHANGE ONLY')
+  end
+
 
 end

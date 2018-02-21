@@ -1,11 +1,12 @@
 require_relative './coin'
 class Vending_Machine
 
-  attr_accessor :display, :inserted_coins, :coin_return, :products, :dispensed, :quarter, :nickel, :dime, :change_coins, :product_stock
+  attr_accessor :display, :inserted_coins, :coin_return, :products, :dispensed, :quarter, :nickel, :dime, :change_coins, :product_stock, :exact_change_mode
 
   def initialize(display:)
+    @exact_change_mode = false
     @inserted_coins = []
-    @display = 'INSERT COIN'
+    @exact_change_mode == true ? @display = 'EXACT CHANGE ONLY' : @display = 'INSERT COIN'
     @coin_return = []
     @products = {"cola" => 1.00, "chips" => 0.50, "candy" => 0.65}
     @product_stock = {"cola" => 5, "chips" => 5, "candy" => 0}
@@ -15,6 +16,10 @@ class Vending_Machine
     @nickel = Coin.new(weight: 5.0, diameter: 21.21)
     @change_coins = {@quarter => "0.25", @dime => "0.10", @nickel => "0.05"}
 
+  end
+
+  def switch_mode
+    @exact_change_mode == true ? @exact_change_mode = false : @exact_change_mode = true
   end
 
   def make_change(num)
