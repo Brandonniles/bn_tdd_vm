@@ -6,7 +6,7 @@ class Vending_Machine
   def initialize(display:)
     @exact_change_mode = false
     @inserted_coins = []
-    @exact_change_mode == true ? @display = 'EXACT CHANGE ONLY' : @display = 'INSERT COIN'
+    @display = 'INSERT COIN'
     @coin_return = []
     @products = {"cola" => 1.00, "chips" => 0.50, "candy" => 0.65}
     @product_stock = {"cola" => 5, "chips" => 5, "candy" => 0}
@@ -19,7 +19,13 @@ class Vending_Machine
   end
 
   def switch_mode
-    @exact_change_mode == true ? @exact_change_mode = false : @exact_change_mode = true
+    if @exact_change_mode == false
+      @exact_change_mode = true
+      @display = 'EXACT CHANGE ONLY'
+    else
+      @exact_change_mode = false
+      @display = 'INSERT COIN'
+    end
   end
 
   def make_change(num)
